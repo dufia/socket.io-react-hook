@@ -4,9 +4,9 @@ import IoContext from "./IoContext";
 
 import {
   CreateConnectionFunc,
+  GetConnectionFunc,
   IoConnection,
   IoNamespace,
-  GetConnectionFunc,
   SocketLike,
   SocketState,
 } from "./types";
@@ -86,7 +86,7 @@ const IoProvider = function ({ children }: React.PropsWithChildren<{}>) {
         },
         subscribers: new Set(),
         subscribe: (callback) => {
-          sockets.current[namespaceKey].subscribers.add(callback);
+          sockets.current[namespaceKey]?.subscribers.add(callback);
           return () =>
             sockets.current[namespaceKey]?.subscribers.delete(callback);
         },
